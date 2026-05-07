@@ -1,8 +1,35 @@
-import {
-    MultiRedditIcon,
-    MultiRedditVisibility,
-    MultiRedditWeightingSchema
-} from "snoowrap/dist/objects/MultiReddit"
+type MultiRedditWeightingSchema = "classic" | "fresh"
+type MultiRedditVisibility = "private" | "public" | "hidden"
+type MultiRedditIcon =
+    | "art and design"
+    | "ask"
+    | "books"
+    | "business"
+    | "cars"
+    | "comics"
+    | "cute animals"
+    | "diy"
+    | "entertainment"
+    | "food and drink"
+    | "funny"
+    | "games"
+    | "grooming"
+    | "health"
+    | "life advice"
+    | "military"
+    | "models pinup"
+    | "music"
+    | "news"
+    | "philosophy"
+    | "pictures and gifs"
+    | "science"
+    | "shopping"
+    | "sports"
+    | "style"
+    | "tech"
+    | "travel"
+    | "unusual stories"
+    | "video"
 
 export interface Multireddit {
     name: string

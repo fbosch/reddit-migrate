@@ -1,12 +1,12 @@
 import fs from "fs"
 import path from "path"
-import RedditMigrate from "../RedditMigrate"
-import loadCredentials from "../credentials/load"
-import login from "../login"
-import importData from "../data/import"
-import validateImportData from "../data/validate"
-import Which from "../data/interfaces/Which"
-import { spin, formatSuccess, formatError } from "../util"
+import RedditMigrate from "../RedditMigrate.js"
+import loadCredentials from "../credentials/load.js"
+import login from "../login.js"
+import importData from "../data/import.js"
+import validateImportData from "../data/validate.js"
+import Which from "../data/interfaces/Which.js"
+import { spin, formatSuccess, formatError } from "../util.js"
 
 export default async function importCommand(self: RedditMigrate) {
     const credentials = await loadCredentials(self, false)

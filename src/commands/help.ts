@@ -1,7 +1,7 @@
-import RedditMigrate from "../RedditMigrate"
+import RedditMigrate from "../RedditMigrate.js"
 import chalk from "chalk"
-import commander from "commander"
-import { error, blue, blueString } from "../util"
+import { Option } from "commander"
+import { error, blue, blueString } from "../util.js"
 
 export default function helpCommand(this: RedditMigrate, commandName: string) {
     if (
@@ -9,30 +9,34 @@ export default function helpCommand(this: RedditMigrate, commandName: string) {
         !commandName ||
         commandName.toLowerCase() === "help"
     ) {
-        console.log(chalk`
-{bold Usage:}
-    reddit-migrate {${blueString} [command] [options]}
+        const commands = this.commands
+            .map(
+                command =>
+                    `${command.name()} [options]`.padEnd(20) + blue(command.description())
+            )
+            .join("\n" + " ".repeat(4))
 
-{bold Commands:}
-    ${this.commands
-        .map(
-            command =>
-                `${command.name()} [options]`.padEnd(20) + blue(command.description())
-        )
-        .join("\n" + " ".repeat(4))}`)
+        console.log(`
+${chalk.bold("Usage:")}
+    reddit-migrate ${blue("[command] [options]")}
+
+${chalk.bold("Commands:")}
+    ${commands}`)
     } else {
         const command = this.commands.find(c => c.name() === commandName.toLowerCase())
         if (!command) error(`Unknown command {${commandName}}.`)
 
-        console.log(chalk`
+        const options = command.options
+            .map((option: Option) => `${option.flags}`.padEnd(24) + blue(option.description))
+            .join("\n" + " ".repeat(4))
+
+        console.log(`
 ${command.description()}
 
-{bold Usage:}
-    ${command.name()} {${blueString} [options]}
+${chalk.bold("Usage:")}
+    ${command.name()} ${blue("[options]")}
 
-{bold Options:}
-    ${command.options
-        .map((option: commander.Option) => `${option.flags}`.padEnd(24) + blue(option.description))
-        .join("\n" + " ".repeat(4))}`)
+${chalk.bold("Options:")}
+    ${options}`)
     }
 }

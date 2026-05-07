@@ -1,7 +1,7 @@
-const assert = require("node:assert/strict")
-const test = require("node:test")
+import assert from "node:assert/strict"
+import test from "node:test"
 
-const validateCredentials = require("../dist/credentials/validate").default
+import validateCredentials from "../dist/credentials/validate.js"
 
 test("accepts valid usernames and passwords", () => {
     assert.equal(validateCredentials("USERNAME", "valid_user", undefined), true)

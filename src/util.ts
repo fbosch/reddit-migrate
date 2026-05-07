@@ -2,8 +2,10 @@ import stripANSI from "strip-ansi"
 import logSymbols from "log-symbols"
 import chalk from "chalk"
 import ora from "ora"
+import type { ChalkInstance } from "chalk"
+import type { Ora, Options } from "ora"
 
-let spinner: ora.Ora = null
+let spinner: Ora = null
 
 export const noop = () => null
 
@@ -21,7 +23,7 @@ export const symbols = { ...logSymbols, info }
 
 // logging
 type HighlightColor = "green" | "yellow" | "red"
-const highlightColors: Record<HighlightColor, chalk.Chalk> = {
+const highlightColors: Record<HighlightColor, ChalkInstance> = {
     green: chalk.greenBright,
     yellow: chalk.yellowBright,
     red: chalk.redBright
@@ -45,7 +47,7 @@ export function error(message: string, exit: boolean = true) {
     if (exit) process.exit(1)
 }
 
-export function spin(message: string, options: ora.Options = {}) {
+export function spin(message: string, options: Options = {}) {
     if (spinner) spinner.stop()
     spinner = ora({
         text: highlight(message, "yellow"),

@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 import chalk from "chalk"
-import commander from "commander"
-import RedditMigrate from "./RedditMigrate"
-import { Attributes } from "./data/interfaces/Attributes"
-import Which from "./data/interfaces/Which"
+import { Command } from "commander"
+import RedditMigrate from "./RedditMigrate.js"
+import { Attributes } from "./data/interfaces/Attributes.js"
+import Which from "./data/interfaces/Which.js"
 
-import { orangeString, bgOrangeString, error } from "./util"
-import helpCommand from "./commands/help"
-import migrateCommand from "./commands/migrate"
-import exportCommand from "./commands/export"
-import importCommand from "./commands/import"
-import purgeCommand from "./commands/purge"
-import override from "./overrides"
+import { orangeString, bgOrangeString, error } from "./util.js"
+import helpCommand from "./commands/help.js"
+import migrateCommand from "./commands/migrate.js"
+import exportCommand from "./commands/export.js"
+import importCommand from "./commands/import.js"
+import purgeCommand from "./commands/purge.js"
+import override from "./overrides.js"
 
 process.on("unhandledRejection", (info: { message: string; stack: string }) => {
     const { message, stack } = info
@@ -47,9 +47,9 @@ function handlePurgeWhich(value: string): Partial<Record<"posts" | "comments", t
 }
 
 async function main() {
-    console.log(chalk`{${orangeString} reddit-migrate} {${bgOrangeString}  }\n`)
+    console.log(`${chalk.rgb(255, 69, 0)("reddit-migrate")} ${chalk.bgRgb(255, 69, 0)("  ")}\n`)
 
-    const cli = new commander.Command() as RedditMigrate
+    const cli = new Command() as RedditMigrate
     cli.name("reddit-migrate").usage("[command] [options]").action(helpCommand.bind(cli))
     override(cli)
 

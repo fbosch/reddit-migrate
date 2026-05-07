@@ -1,8 +1,8 @@
-import commander from "commander"
-import { error } from "./util"
+import { Command } from "commander"
+import { error } from "./util.js"
 
 type CommandOption = { flags: string }
-interface OverriddenCommand extends commander.Command {
+interface OverriddenCommand extends Command {
     missingArgument(name: string): void
     optionMissingArgument(option: CommandOption): void
     missingMandatoryOptionValue(option: CommandOption): void
@@ -13,7 +13,7 @@ interface OverriddenCommand extends commander.Command {
 /**
  * Override some of Commander's default methods to stick to the CLI's logging style.
  */
-export default function override(command: commander.Command): void {
+export default function override(command: Command): void {
     const overridden = command as OverriddenCommand
     overridden.missingArgument = (name: string) =>
         error(`Missing required argument {${name}}.`)

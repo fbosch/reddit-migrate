@@ -1,8 +1,10 @@
-// @ts-ignore
-import pkg = require("../package.json")
-import { formatSuccess, error, spin } from "./util"
-import { Credentials } from "./credentials/Credentials"
+import { createRequire } from "node:module"
+import { formatSuccess, error, spin } from "./util.js"
+import { Credentials } from "./credentials/Credentials.js"
 import Snoowrap from "snoowrap"
+
+const require = createRequire(import.meta.url)
+const pkg = require("../package.json") as { version: string }
 
 export default async function login(
     credentials: Credentials,

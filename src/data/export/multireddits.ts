@@ -1,5 +1,5 @@
 import Snoowrap from "snoowrap"
-import { spin, formatSuccess } from "../../util"
+import { spin, formatSuccess } from "../../util.js"
 
 export default async function exportMultireddits(reddit: Snoowrap) {
     const spinner = spin("Retrieving multireddits...")

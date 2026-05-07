@@ -1,6 +1,6 @@
 import Snoowrap from "snoowrap"
-import { spin, highlight, success } from "../../util"
-import Which from "../interfaces/Which"
+import { spin, highlight, success } from "../../util.js"
+import Which from "../interfaces/Which.js"
 
 export default async function exportSubscriptions(reddit: Snoowrap, which: Which) {
     const spinner = spin("Retrieving subscriptions...")

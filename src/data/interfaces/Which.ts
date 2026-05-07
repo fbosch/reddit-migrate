@@ -1,4 +1,4 @@
-import { Attributes, Submissions } from "./Attributes"
+import { Attributes, Submissions } from "./Attributes.js"
 
 /**
  * <S> should be true if in a submission context. so, if the command being used is `purge`.

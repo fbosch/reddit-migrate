@@ -1,6 +1,6 @@
 import Snoowrap, { MultiReddit } from "snoowrap"
-import { highlight, formatSuccess, formatError, spin, error } from "../../util"
-import { Multireddit } from "../interfaces/Data"
+import { highlight, formatSuccess, formatError, spin, error } from "../../util.js"
+import { Multireddit } from "../interfaces/Data.js"
 
 async function copyMultireddit(reddit: Snoowrap, data: Multireddit) {
     let copied: MultiReddit = null

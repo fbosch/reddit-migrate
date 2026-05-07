@@ -1,5 +1,5 @@
-import Data, { Multireddit } from "./interfaces/Data"
-import Which from "./interfaces/Which"
+import Data, { Multireddit } from "./interfaces/Data.js"
+import Which from "./interfaces/Which.js"
 
 const attributes = [
     "subscriptions",

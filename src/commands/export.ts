@@ -2,12 +2,12 @@ import fs from "fs"
 import path from "path"
 import chalk from "chalk"
 import inquirer from "inquirer"
-import RedditMigrate from "../RedditMigrate"
-import loadCredentials from "../credentials/load"
-import exportData from "../data/export"
-import login from "../login"
-import Which from "../data/interfaces/Which"
-import { spin, formatSuccess, formatError, error, symbols, blue } from "../util"
+import RedditMigrate from "../RedditMigrate.js"
+import loadCredentials from "../credentials/load.js"
+import exportData from "../data/export.js"
+import login from "../login.js"
+import Which from "../data/interfaces/Which.js"
+import { spin, formatSuccess, formatError, error, symbols, blue } from "../util.js"
 
 export default async function exportCommand(self: RedditMigrate) {
     const credentials = await loadCredentials(self, false)

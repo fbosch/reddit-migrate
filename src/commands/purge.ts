@@ -1,8 +1,8 @@
-import RedditMigrate from "../RedditMigrate"
-import loadCredentials from "../credentials/load"
-import login from "../login"
-import purge from "../data/purge"
-import Which from "../data/interfaces/Which"
+import RedditMigrate from "../RedditMigrate.js"
+import loadCredentials from "../credentials/load.js"
+import login from "../login.js"
+import purge from "../data/purge.js"
+import Which from "../data/interfaces/Which.js"
 
 export default async function purgeCommand(self: RedditMigrate) {
     const credentials = await loadCredentials(self, false)

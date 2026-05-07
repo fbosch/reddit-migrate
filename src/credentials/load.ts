@@ -3,11 +3,12 @@ import path from "path"
 import chalk from "chalk"
 import dotenv from "dotenv"
 import inquirer from "inquirer"
-import commander from "commander"
+import { Command } from "commander"
+import type { Question } from "inquirer"
 // "what a glorious set of stairs we make!"
-import validateCredentials from "./validate"
-import { symbols, blue, formatSuccess, formatError, spin, error } from "../util"
-import { Credentials } from "./Credentials"
+import validateCredentials from "./validate.js"
+import { symbols, blue, formatSuccess, formatError, spin, error } from "../util.js"
+import { Credentials } from "./Credentials.js"
 
 const isSecret = (name: string) => name.endsWith("PASSWORD") || name.endsWith("SECRET")
 const humanize = (name: string) => name.replace(/_/g, " ").toLowerCase()
@@ -15,11 +16,13 @@ const censor = (string: string) => "*".repeat(string.length)
 
 function askValue(name: string, questionPrefix: string, oldValue?: string) {
     name = humanize(name)
-    const question = chalk`{reset ${questionPrefix}, what's the} {bold ${name}}?`
-    type PromptQuestion = inquirer.Question<Record<string, string>> & {
+    const question = `${questionPrefix}, what's the ${chalk.bold(name)}?`
+    type PromptQuestion = Question<Record<string, string>> & {
+        prefix: string
         transformer(input: string): string
     }
     const prompt: PromptQuestion = {
+        type: "input",
         name: name,
         message: question,
         prefix: symbols.info,
@@ -32,7 +35,7 @@ function askValue(name: string, questionPrefix: string, oldValue?: string) {
 
 const credentials = ["CLIENT_ID", "CLIENT_SECRET", "USERNAME", "PASSWORD"]
 export default async function loadCredentials(
-    command: commander.Command & { envFile?: string },
+    command: Command & { envFile?: string },
     needBoth: boolean
 ) {
     const credentialNames = needBoth

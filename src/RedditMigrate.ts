@@ -1,10 +1,10 @@
-import commander from "commander"
-import Which from "./data/interfaces/Which"
+import { Command } from "commander"
+import Which from "./data/interfaces/Which.js"
 
 /**
  * Sub-class of Command that types the command's options.
  */
-export default class RedditMigrate extends commander.Command {
+export default class RedditMigrate extends Command {
     envFile?: string
     which: Which<true> | Which<false>
     input?: string

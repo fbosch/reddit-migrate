@@ -1,12 +1,12 @@
 import Snoowrap from "snoowrap"
-import importSubscriptions from "./import/subscriptions"
-import importFriends from "./import/friends"
-import importBlocked from "./import/blocked"
-import importMultireddits from "./import/multireddits"
-import importProfile from "./import/profile"
-import importPreferences from "./import/preferences"
-import Data from "./interfaces/Data"
-import Which from "./interfaces/Which"
+import importSubscriptions from "./import/subscriptions.js"
+import importFriends from "./import/friends.js"
+import importBlocked from "./import/blocked.js"
+import importMultireddits from "./import/multireddits.js"
+import importProfile from "./import/profile.js"
+import importPreferences from "./import/preferences.js"
+import Data from "./interfaces/Data.js"
+import Which from "./interfaces/Which.js"
 
 export default async function importData(reddit: Snoowrap, data: Partial<Data>, which: Which) {
     if (which.subscriptions || which.follows)

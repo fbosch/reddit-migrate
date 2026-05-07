@@ -1,6 +1,6 @@
 import Snoowrap, { RedditUser } from "snoowrap"
-import { highlight, formatSuccess, formatError, spin, error } from "../../util"
-import Data from "../interfaces/Data"
+import { highlight, formatSuccess, formatError, spin, error } from "../../util.js"
+import Data from "../interfaces/Data.js"
 
 // Snoowrap doesn't support the block_user endpoint :)
 function block(user: RedditUser) {

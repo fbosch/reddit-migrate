@@ -1,7 +1,7 @@
-const assert = require("node:assert/strict")
-const test = require("node:test")
+import assert from "node:assert/strict"
+import test from "node:test"
 
-const validateImportData = require("../dist/data/validate").default
+import validateImportData from "../dist/data/validate.js"
 
 const all = {
     subscriptions: true,

@@ -1,9 +1,9 @@
-import RedditMigrate from "../RedditMigrate"
-import loadCredentials from "../credentials/load"
-import login from "../login"
-import exportData from "../data/export"
-import importData from "../data/import"
-import Which from "../data/interfaces/Which"
+import RedditMigrate from "../RedditMigrate.js"
+import loadCredentials from "../credentials/load.js"
+import login from "../login.js"
+import exportData from "../data/export.js"
+import importData from "../data/import.js"
+import Which from "../data/interfaces/Which.js"
 
 export default async function migrateCommand(self: RedditMigrate) {
     const credentials = await loadCredentials(self, true)

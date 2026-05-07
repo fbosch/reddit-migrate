@@ -1,12 +1,12 @@
 import Snoowrap from "snoowrap"
-import exportSubscriptions from "./export/subscriptions"
-import exportFriends from "./export/friends"
-import exportBlocked from "./export/blocked"
-import exportMultireddits from "./export/multireddits"
-import exportProfile from "./export/profile"
-import exportPreferences from "./export/preferences"
-import Data from "./interfaces/Data"
-import Which from "./interfaces/Which"
+import exportSubscriptions from "./export/subscriptions.js"
+import exportFriends from "./export/friends.js"
+import exportBlocked from "./export/blocked.js"
+import exportMultireddits from "./export/multireddits.js"
+import exportProfile from "./export/profile.js"
+import exportPreferences from "./export/preferences.js"
+import Data from "./interfaces/Data.js"
+import Which from "./interfaces/Which.js"
 
 export default async function exportData(reddit: Snoowrap, which: Which) {
     const data: Partial<Data> = { exported_at: null }

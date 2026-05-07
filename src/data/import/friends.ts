@@ -1,6 +1,6 @@
 import Snoowrap, { RedditUser } from "snoowrap"
-import { highlight, formatSuccess, formatError, spin, error } from "../../util"
-import Data from "../interfaces/Data"
+import { highlight, formatSuccess, formatError, spin, error } from "../../util.js"
+import Data from "../interfaces/Data.js"
 
 export default async function importFriends(reddit: Snoowrap, data: Data["friends"]) {
     if (!data || !Array.isArray(data) || !data.length)

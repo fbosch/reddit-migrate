@@ -1,6 +1,6 @@
 import Snoowrap from "snoowrap"
-import { formatSuccess, spin, error } from "../../util"
-import Data from "../interfaces/Data"
+import { formatSuccess, spin, error } from "../../util.js"
+import Data from "../interfaces/Data.js"
 
 export default async function importPreferences(
     reddit: Snoowrap,
