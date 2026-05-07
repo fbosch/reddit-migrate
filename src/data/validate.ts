@@ -25,13 +25,22 @@ function assertStringList(data: Record<string, unknown>, attribute: string) {
 }
 
 function assertSettingsObject(data: Record<string, unknown>, attribute: string) {
-    if (!isPlainObject(data[attribute])) throw new Error(`${attribute} must be an object.`)
+    if (!isPlainObject(data[attribute]))
+        throw new Error(`${attribute} must be an object.`)
 }
 
 function assertMultireddit(value: unknown, index: number): asserts value is Multireddit {
-    if (!isPlainObject(value)) throw new Error(`multireddits[${index}] must be an object.`)
+    if (!isPlainObject(value))
+        throw new Error(`multireddits[${index}] must be an object.`)
 
-    for (const key of ["name", "description", "visibility", "icon_name", "key_color", "weighting_scheme"])
+    for (const key of [
+        "name",
+        "description",
+        "visibility",
+        "icon_name",
+        "key_color",
+        "weighting_scheme"
+    ])
         if (typeof value[key] !== "string")
             throw new Error(`multireddits[${index}].${key} must be a string.`)
 
@@ -41,9 +50,14 @@ function assertMultireddit(value: unknown, index: number): asserts value is Mult
         copiedFrom !== undefined &&
         (typeof copiedFrom !== "string" || !/^user\/[^/]+\/m\/[^/]+$/.test(copiedFrom))
     )
-        throw new Error(`multireddits[${index}].copied_from must be a reddit multireddit path.`)
+        throw new Error(
+            `multireddits[${index}].copied_from must be a reddit multireddit path.`
+        )
 
-    if (!Array.isArray(value.subreddits) || value.subreddits.some(item => typeof item !== "string"))
+    if (
+        !Array.isArray(value.subreddits) ||
+        value.subreddits.some(item => typeof item !== "string")
+    )
         throw new Error(`multireddits[${index}].subreddits must be an array of strings.`)
 }
 
@@ -51,7 +65,8 @@ export default function validateImportData(data: unknown, which: Which): Partial
     if (!isPlainObject(data)) throw new Error("Import data must be an object.")
 
     for (const key of Object.keys(data))
-        if (!topLevelKeys.has(key)) throw new Error(`Unknown import data attribute: ${key}.`)
+        if (!topLevelKeys.has(key))
+            throw new Error(`Unknown import data attribute: ${key}.`)
 
     if (data.exported_at !== undefined && typeof data.exported_at !== "string")
         throw new Error("exported_at must be a string.")

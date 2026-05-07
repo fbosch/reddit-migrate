@@ -14,7 +14,7 @@
     "homepage": "https://github.com/cAttte/reddit-migrate#readme",
     "scripts": {
         "preinstall": "tsc",
-        "format": "prettier --write src/",
+        "format": "biome format --write src/ test/",
         "test": "tsc && node --test \"test/**/*.test.js\"",
         "build": "tsc",
         "watch": "tsc --watch"
@@ -30,8 +30,8 @@
         "strip-ansi": "^7.2.0"
     },
     "devDependencies": {
+        "@biomejs/biome": "^2.4.14",
         "@types/node": "^25.6.0",
-        "prettier": "^3.8.3",
         "typescript": "^6.0.3"
     }
 }

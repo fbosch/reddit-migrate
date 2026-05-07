@@ -22,7 +22,10 @@ async function subscribe(
             .then(() => succeeded++)
             .catch(() => failed++)
         // prettier-ignore
-        const infoFormatted = highlight(`${actioning} {${succeeded}} ${type}s...`, "yellow")
+        const infoFormatted = highlight(
+            `${actioning} {${succeeded}} ${type}s...`,
+            "yellow"
+        )
         const failedFormatted = failed ? highlight(` ({${failed}} failed)`, "red") : ""
         spinner.text = infoFormatted + failedFormatted
     }
@@ -32,7 +35,9 @@ async function subscribe(
     } else {
         const succeededFormatted = formatSuccess(`${actioned} {${succeeded}} ${type}s.`)
         // prettier-ignore
-        const failedFormatted = (failed ? formatError(` Couldn't ${action} {${failed}}.`) : "")
+        const failedFormatted = failed
+            ? formatError(` Couldn't ${action} {${failed}}.`)
+            : ""
         spinner.succeed(succeededFormatted + failedFormatted)
     }
 }

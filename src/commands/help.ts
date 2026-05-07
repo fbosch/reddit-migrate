@@ -27,7 +27,10 @@ ${chalk.bold("Commands:")}
         if (!command) error(`Unknown command {${commandName}}.`)
 
         const options = command.options
-            .map((option: Option) => `${option.flags}`.padEnd(24) + blue(option.description))
+            .map(
+                (option: Option) =>
+                    `${option.flags}`.padEnd(24) + blue(option.description)
+            )
             .join("\n" + " ".repeat(4))
 
         console.log(`

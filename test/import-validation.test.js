@@ -46,13 +46,19 @@ test("accepts exported data for selected attributes", () => {
 test("rejects unknown top-level attributes", () => {
     const data = { ...validData(), token: "secret" }
 
-    assert.throws(() => validateImportData(data, all), /Unknown import data attribute: token/)
+    assert.throws(
+        () => validateImportData(data, all),
+        /Unknown import data attribute: token/
+    )
 })
 
 test("rejects malformed string lists before account mutation", () => {
     const data = { ...validData(), friends: ["friend_user", 42] }
 
-    assert.throws(() => validateImportData(data, all), /friends must be an array of strings/)
+    assert.throws(
+        () => validateImportData(data, all),
+        /friends must be an array of strings/
+    )
 })
 
 test("rejects malformed multireddit copy paths before import", () => {

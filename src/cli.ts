@@ -47,7 +47,9 @@ function handlePurgeWhich(value: string): Partial<Record<"posts" | "comments", t
 }
 
 async function main() {
-    console.log(`${chalk.rgb(255, 69, 0)("reddit-migrate")} ${chalk.bgRgb(255, 69, 0)("  ")}\n`)
+    console.log(
+        `${chalk.rgb(255, 69, 0)("reddit-migrate")} ${chalk.bgRgb(255, 69, 0)("  ")}\n`
+    )
 
     const cli = new Command() as RedditMigrate
     cli.name("reddit-migrate").usage("[command] [options]").action(helpCommand.bind(cli))

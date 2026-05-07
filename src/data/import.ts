@@ -8,7 +8,11 @@ import importPreferences from "./import/preferences.js"
 import Data from "./interfaces/Data.js"
 import Which from "./interfaces/Which.js"
 
-export default async function importData(reddit: Snoowrap, data: Partial<Data>, which: Which) {
+export default async function importData(
+    reddit: Snoowrap,
+    data: Partial<Data>,
+    which: Which
+) {
     if (which.subscriptions || which.follows)
         await importSubscriptions(
             reddit,

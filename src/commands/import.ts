@@ -31,5 +31,9 @@ export default async function importCommand(self: RedditMigrate) {
     if (!isNaN(exportDate as number))
         console.log(formatSuccess(`  Exported at {${exportDate}}.`))
 
-    await importData(reddit, validateImportData(data, self.which as Which<false>), self.which as Which<false>)
+    await importData(
+        reddit,
+        validateImportData(data, self.which as Which<false>),
+        self.which as Which<false>
+    )
 }

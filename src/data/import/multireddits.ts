@@ -57,7 +57,10 @@ export default async function importMultireddits(reddit: Snoowrap, data: Multire
             .then(() => succeeded++)
             .catch(() => failed++)
         // prettier-ignore
-        const infoFormatted = highlight(`Copying {${succeeded}} multireddits...`, "yellow")
+        const infoFormatted = highlight(
+            `Copying {${succeeded}} multireddits...`,
+            "yellow"
+        )
         const failedFormatted = failed ? highlight(` ({${failed}} failed)`, "red") : ""
         spinner.text = infoFormatted + failedFormatted
     }
