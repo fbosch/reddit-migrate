@@ -35,7 +35,7 @@ async function copyMultireddit(reddit: Snoowrap, data: Multireddit) {
 
     // only 'subreddits' and 'name' can be provided when creating
     // @ts-ignore: Snoowrap typings are broken
-    return await copied.edit({
+    await copied.edit({
         description: data.description,
         visibility: data.visibility,
         icon_name: data.icon_name,
