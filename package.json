@@ -14,6 +14,7 @@
     "scripts": {
         "preinstall": "tsc",
         "format": "prettier --write src/",
+        "test": "tsc && node --test \"test/**/*.test.js\"",
         "build": "tsc",
         "watch": "tsc --watch"
     },

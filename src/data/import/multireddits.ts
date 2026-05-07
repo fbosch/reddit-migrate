@@ -6,10 +6,10 @@ async function copyMultireddit(reddit: Snoowrap, data: Multireddit) {
     let copied: MultiReddit = null
 
     if (data.copied_from) {
-        const [username, multiname] = data.copied_from
-            .match(/user\/([^/]+)\/m\/([^/]+)/)
-            .slice(1)
-        if (!username || !multiname) throw new Error()
+        const match = data.copied_from.match(/^user\/([^/]+)\/m\/([^/]+)$/)
+        if (!match) throw new Error()
+
+        const [, username, multiname] = match
 
         // @ts-ignore: Snoowrap typings are broken
         const multi = await reddit.getUser(username).getMultireddit(multiname)

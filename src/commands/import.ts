@@ -4,6 +4,7 @@ import RedditMigrate from "../RedditMigrate"
 import loadCredentials from "../credentials/load"
 import login from "../login"
 import importData from "../data/import"
+import validateImportData from "../data/validate"
 import Which from "../data/interfaces/Which"
 import { spin, formatSuccess, formatError } from "../util"
 
@@ -30,5 +31,5 @@ export default async function importCommand(self: RedditMigrate) {
     if (!isNaN(exportDate as number))
         console.log(formatSuccess(`  Exported at {${exportDate}}.`))
 
-    await importData(reddit, data, self.which as Which<false>)
+    await importData(reddit, validateImportData(data, self.which as Which<false>), self.which as Which<false>)
 }

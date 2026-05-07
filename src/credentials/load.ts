@@ -16,18 +16,23 @@ const censor = (string: string) => "*".repeat(string.length)
 function askValue(name: string, questionPrefix: string, oldValue?: string) {
     name = humanize(name)
     const question = chalk`{reset ${questionPrefix}, what's the} {bold ${name}}?`
-    return inquirer.prompt({
+    type PromptQuestion = inquirer.Question<Record<string, string>> & {
+        transformer(input: string): string
+    }
+    const prompt: PromptQuestion = {
         name: name,
         message: question,
         prefix: symbols.info,
         validate: (input: string) => validateCredentials(name, input, oldValue),
         transformer: (input: string) => blue(isSecret(name) ? censor(input) : input)
-    })
+    }
+
+    return inquirer.prompt<Record<string, string>>([prompt])
 }
 
 const credentials = ["CLIENT_ID", "CLIENT_SECRET", "USERNAME", "PASSWORD"]
 export default async function loadCredentials(
-    command: commander.Command,
+    command: commander.Command & { envFile?: string },
     needBoth: boolean
 ) {
     const credentialNames = needBoth

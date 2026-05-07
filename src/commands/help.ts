@@ -1,5 +1,6 @@
 import RedditMigrate from "../RedditMigrate"
 import chalk from "chalk"
+import commander from "commander"
 import { error, blue, blueString } from "../util"
 
 export default function helpCommand(this: RedditMigrate, commandName: string) {
@@ -16,22 +17,22 @@ export default function helpCommand(this: RedditMigrate, commandName: string) {
     ${this.commands
         .map(
             command =>
-                `${command._name} [options]`.padEnd(20) + blue(command._description)
+                `${command.name()} [options]`.padEnd(20) + blue(command.description())
         )
         .join("\n" + " ".repeat(4))}`)
     } else {
-        const command = this.commands.find(c => c._name === commandName.toLowerCase())
+        const command = this.commands.find(c => c.name() === commandName.toLowerCase())
         if (!command) error(`Unknown command {${commandName}}.`)
 
         console.log(chalk`
-${command._description}
+${command.description()}
 
 {bold Usage:}
-    ${command._name} {${blueString} [options]}
+    ${command.name()} {${blueString} [options]}
 
 {bold Options:}
     ${command.options
-        .map((option: any) => `${option.flags}`.padEnd(24) + blue(option.description))
+        .map((option: commander.Option) => `${option.flags}`.padEnd(24) + blue(option.description))
         .join("\n" + " ".repeat(4))}`)
     }
 }

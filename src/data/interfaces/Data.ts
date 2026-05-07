@@ -11,7 +11,7 @@ export interface Multireddit {
     icon_name: MultiRedditIcon
     key_color: string
     weighting_scheme: MultiRedditWeightingSchema
-    copied_from: string
+    copied_from: string | null
     subreddits: string[]
 }
 

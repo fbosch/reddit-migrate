@@ -20,8 +20,15 @@ const info = blue(stripANSI(logSymbols.info))
 export const symbols = { ...logSymbols, info }
 
 // logging
-export function highlight(string: string, color: string) {
-    return string.replace(/{(.+?)}/g, (_, $1) => chalk[color + "Bright"]($1))
+type HighlightColor = "green" | "yellow" | "red"
+const highlightColors: Record<HighlightColor, chalk.Chalk> = {
+    green: chalk.greenBright,
+    yellow: chalk.yellowBright,
+    red: chalk.redBright
+}
+
+export function highlight(string: string, color: HighlightColor) {
+    return string.replace(/{(.+?)}/g, (_, $1) => highlightColors[color]($1))
 }
 
 export const formatSuccess = (message: string) => highlight(message, "green")
